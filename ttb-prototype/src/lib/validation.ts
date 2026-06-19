@@ -14,11 +14,8 @@ export const normalizeWarningText = (str: string) => {
   // The UI will intentionally still display the RAW extracted text (hyphens included) 
   // so the analyst can see exactly what the OCR engine interpreted.
   return str
-    .replace(/-\s*/g, '') // Fix line-break hyphenation (e.g. "BEV- ERAGES" or "SUR-\nGEON" -> "BEVERAGES", "SURGEON")
-    .toLowerCase() // Body can be any case
-    .replace(/[^a-z0-9\s]/g, '') // Strip punctuation
-    .trim()
-    .replace(/\s+/g, ' '); // Normalize spaces
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, ''); // Strip all punctuation and whitespace to perfectly match any arbitrary word splitting
 };
 
 /**
